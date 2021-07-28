@@ -1,0 +1,46 @@
+/*
+primary colors:
+ * #F26925 / rgb 242, 105,  37 (orange)
+ * #FFFFFF / rgb 255, 255, 255 (white)
+ * #474C55 / rgb  71,  76,  85 (dark gray)
+
+secondary colors:
+ * #72A4C2 / rgb 114, 164, 194 (blue)
+ * #FCB414 / rgb 252, 180,  20 (yellow)
+ * #B9B9BA / rgb 185, 185, 186 (light gray)
+
+
+
+
+reminder:
+ * please use rem/em for units
+ */
+
+@font-face { /* thinnest */
+    font-family: "Futura Std, Book"; 
+    src: url("Futura-Std-Book.otf") format("opentype");
+    font-style: normal;
+}
+
+@font-face { /* thinner */
+    font-family: "Futura Std, Medium"; 
+    src: url("Futura-Std-Medium.otf") format("opentype");
+    font-style: normal;
+}
+
+@font-face { /* thicker */
+    font-family: "Futura Std, Heavy"; 
+    src: url("Futura-Std-Heavy.otf") format("opentype");
+    font-style: normal;
+}
+
+@font-face { /* thickest */
+    font-family: "Futura Std, Bold"; 
+    src: url("Futura-Std-Bold.otf") format("opentype");
+    font-style: normal;
+}
+ 
+body {
+  background-color: #B9B9BA;
+  background: linear-gradient(to bottom right, #72A4C2 0%, #B9B9BA 30%);
+}
