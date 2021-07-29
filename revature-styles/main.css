@@ -16,27 +16,27 @@ reminder:
  */
 
 @font-face { /* thinnest */
-    font-family: "Futura Std, Book"; 
-    src: url("Futura-Std-Book.otf") format("opentype");
-    font-style: normal;
+	font-family: "Futura Std, Book"; 
+	src: url("Futura-Std-Book.otf") format("opentype");
+	font-style: normal;
 }
 
 @font-face { /* thinner */
-    font-family: "Futura Std, Medium"; 
-    src: url("Futura-Std-Medium.otf") format("opentype");
-    font-style: normal;
+	font-family: "Futura Std, Medium"; 
+	src: url("Futura-Std-Medium.otf") format("opentype");
+	font-style: normal;
 }
 
 @font-face { /* thicker */
-    font-family: "Futura Std, Heavy"; 
-    src: url("Futura-Std-Heavy.otf") format("opentype");
-    font-style: normal;
+	font-family: "Futura Std, Heavy"; 
+	src: url("Futura-Std-Heavy.otf") format("opentype");
+	font-style: normal;
 }
 
 @font-face { /* thickest */
-    font-family: "Futura Std, Bold"; 
-    src: url("Futura-Std-Bold.otf") format("opentype");
-    font-style: normal;
+	font-family: "Futura Std, Bold"; 
+	src: url("Futura-Std-Bold.otf") format("opentype");
+	font-style: normal;
 }
  
 body{
@@ -45,5 +45,5 @@ body{
 }
 
 * {
-  font-family: "Futura Std, Medium", sans-serif;
+	font-family: "Futura Std, Medium", sans-serif;
 }
