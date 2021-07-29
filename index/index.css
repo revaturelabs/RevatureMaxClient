@@ -1,7 +1,7 @@
 @import url('../revature-styles/Futura-Std-Medium.otf');
 
 html {
-  background-image: linear-gradient(#f26925, #474c55);
+  background: linear-gradient( white ,#F26925);
 }
 
 body {
