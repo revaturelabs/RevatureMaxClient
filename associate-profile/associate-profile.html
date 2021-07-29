@@ -43,52 +43,52 @@
         </div>
     </header>
     
-    <form id="contactInfo" name="contactInfo">
+    <form id="updateContactInfo" name="updateContactInfo" action="http://localhost:5000/associate" method="POST">
         <h1>Contact Information</h1>
         <img src="./revature-styles/edit.png" id="editContactInfo">
         <input type="submit" value="Update" id="submitContactInfo" style="display: none;">
         <button  type="button" id="cancelContactInfo" style="display: none;">Cancel</button><br>
         <div class="info row1 col1">
             <h3>First Name: </h3>
-            <p id="userFirstName">First Name</p>
-            <input id="editFirstName" type="text" style="display: none;">
+            <p id="userFirstName"></p>
+            <input id="editFirstName" name="firstName" type="text" style="display: none;">
         </div>
         <div class="info row1 col2">
             <h3>Last Name: </h3>
-            <p id="userLastName">Last Name</p>
-            <input id="editLastName" type="text" style="display: none;">
+            <p id="userLastName"></p>
+            <input id="editLastName" name="lastName" type="text" style="display: none;">
         </div>
         <div class="info row2 col1">
             <h3>Email Address: </h3>
-            <p id="userEmail">Email</p>
-            <input id="editEmail" type="email" style="display: none;">
+            <p id="userEmail"></p>
+            <input id="editEmail" name="emailAddress" type="email" style="display: none;">
         </div>
     </form>
-    <form id="bio" name="bio">
+    <form id="updateBio" name="updateBio" action="http://localhost:5000/associate" method="POST">
         <h1>About Me</h1>
         <img src="./revature-styles/edit.png" id="editBio">
         <input type="submit" value="Update" id="submitBio" style="display: none;">
         <button  type="button" id="cancelBio" style="display: none;">Cancel</button>
-        <p id="userBio">About me</p>
-        <textarea id="newBio" wrap="hard" minlength="1" style="display: none;"></textarea>
+        <p id="userBio"></p>
+        <textarea id="newBio" name="bio" wrap="hard" minlength="1" style="display: none;"></textarea>
     </form>
-    <form id="favTechnologies" name="favTechnologies">
+    <form id="updateFavTechnologies" name="updateFavTechnologies" action="http://localhost:5000/associate" method="POST">
         <h1>Favorite Technologies</h1>
         <img src="./revature-styles/edit.png" id="editFavTechnologies">
         <input type="submit" value="Update" id="submitFavTechnologies" style="display: none;">
         <button  type="button" id="cancelFavTechnologies" style="display: none;">Cancel</button>
         <ul id="userFavTechnologies">
-            <li id="tech1" class="tech">Tech 1</li>
-            <input id="editTech1" class="tech" type="text" style="display: none;">
-            <li id="tech2" class="tech">Tech 2</li>
-            <input id="editTech2" type="text" style="display: none;">
-            <li id="tech3" class="tech">Tech 3</li>
-            <input id="editTech3" type="text" style="display: none;">
+            <li id="tech1" class="tech"></li>
+            <input id="editTech1" name="tech1" class="tech" type="text" style="display: none;">
+            <li id="tech2" class="tech"></li>
+            <input id="editTech2" name="tech2" type="text" style="display: none;">
+            <li id="tech3" class="tech"></li>
+            <input id="editTech3" name="tech3" type="text" style="display: none;">
         </ul>
         <div class="info">
             <h3>Preference: </h3>
-            <p id="userPreference">Backend</p>
-            <select id="editPreference" style="display: none;">
+            <p id="userPreference"></p>
+            <select id="editPreference" name="preference" style="display: none;">
                 <option value="" disabled selected>Preference</option>
                 <option value="Frontend">Frontend</option>
                 <option value="Backend">Backend</option>
