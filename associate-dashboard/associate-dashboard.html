@@ -6,6 +6,7 @@
     <title>Dashboard - Revature Max</title>
     <link rel="stylesheet" href="../associate-dashboard/associate-dashboard.css">
     <link rel="stylesheet" href="../revature-styles/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 </head>
 
 <body>
@@ -43,25 +44,45 @@
         </div>
     </header>
 
-<!-- chart of data -->
+    <div class="chart-wrapper">
+        <div style="display: flex; justify-content:left;">
+            
+                <div class="chart-options-container">
+                    <div style="border-bottom: solid 0.1em #fff;">
+                        <div style="padding: 0.1em;">Standing: - - -</div>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="hidden">
+                    </div>
+                </div>
+            
+        </div>
+    <!-- chart of data -->
+        
+        <div id='chart-container'>
+            <div style="display:flex; justify-content: center;">
+                <div class="chart-title">Chart Title</div>
+            </div>
+            <canvas id="gradesChart" style="height: 300px; width: 500px;"></canvas>
+        </div>
 
-
-<!-- end chart of data -->
-<!-- table of data -->
-
-	<div>
-		<table>
-			<thead>
-				<tr id="stat_table_head">
-				</tr>
-			</thead>
-			<tbody id="stat_table">
-			</tbody>
-		</table>
-	</div>
-	<script src="../associate-dashboard/fetch_chart_and_table_data.js"></script>
-<!-- end table of data -->
-
+    <!-- end chart of data -->
+    <!-- table of data -->
+    </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr id="stat_table_head">
+                    </tr>
+                </thead>
+                <tbody id="stat_table">
+                </tbody>
+            </table>
+        </div>
+        
+    <!-- end table of data -->
+    
 </body>
+    <script src="../associate-dashboard/fetch_chart_and_table_data.js"></script>
     <script src="../associate-dashboard/associate-dashboard.js"></script>
 </html>

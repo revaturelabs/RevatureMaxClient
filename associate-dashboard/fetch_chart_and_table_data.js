@@ -10,9 +10,9 @@ function build_table(data){
 	let columns = [];
 	Object.keys(data).forEach(x=>{
 		// use keys as column header names! fun!
-		let td = document.createElement("td")
-		td.textContent = x; //TODO maybe? make a dictionary that points from these names to names we want
-		thead_row.appendChild(td);
+		let th = document.createElement("th")
+		th.textContent = x; //TODO maybe? make a dictionary that points from these names to names we want
+		thead_row.appendChild(th);
 		
 		// pull out columns, we need rows later
 		columns.push(data[x]);
@@ -95,6 +95,56 @@ function get_table(){
 	})
 }
 
+async function loadData(dataList){
+    var chartData = [];
+    const color = ['#eb4030', '#eb4030', '#eb4030'];
+    const bColor = ['rgb(255, 99, 132)', 'rgb(255, 99, 132)', 'rgb(255, 99, 132)'];
+    for(label in dataList){
+        let i = 0;
+        let setLabel = label; // ledgend label
+        let setData =  Object.values(dataList[label]);  // data to be graphed
+        let setColor = color[i]; // color of this datas background
+        let setBorderColor = bColor[i]; // color of ths datas trace
+        let parsedData = {label: setLabel, data: setData, backgroundColor: setColor, borderColor: setBorderColor, borderWidth: 1,};
+        i++;
+        chartData.push(parsedData);
+    };
+    return chartData;
+}
+
+
+async function graphIt(data){
+	var Data = await loadData(data);
+	console.log(Data[0])
+
+	// Data[0].hidden = "true";
+	
+    var ctx = document.getElementById('gradesChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data:{
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 3', 'Week 4', 'Week 5', 
+                'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10', 'Week 11'],
+            datasets: Data,},
+            
+		options: {
+			normalized: true,
+			maintainAspectRatio: false,
+			scales: {
+				y: {
+					beginAtZero: true,
+				}
+			}
+		}
+    });
+	return myChart
+ }
+
+// let mockdata = { 'associate': [0, 10, 20, 30, 40, 50, 60 ,70, 80, 90], 'batch':[0, 10, 30, 20, 40, 60, 50], 'henry':[100, 100, 100, 100, 100, 100, 100, 100]}
+
+let mockdata = { 'associate': [0, 10, 20, 30, 40, 50, 60 ,70, 80, 90]}
+var chart = graphIt(mockdata);
+
 /* the following is for testing purposes, remove when endpoint is mocked/ready... */
 dict = {};
 ["label","date","score","batchAverage"].forEach(x=>{
@@ -104,3 +154,29 @@ dict = {};
 	};
 });
 build_table(dict);
+
+
+
+// This can be used to hide data within the chart options . . .
+
+// data:
+// {
+//         datasets: [
+//         {
+//             data: [1,2,3],
+//             label: 'My First Dataset',
+//             hidden: true,
+//         },
+//         ],
+// }
+
+document.getElementById("hidden").addEventListener('change', function() {
+	if (this.checked) {
+		chart.options.hidden = 'false'
+		chart.update()
+	} else {
+		chart.options.hidden = 'true'
+		chart.update()
+	}
+  });
+
