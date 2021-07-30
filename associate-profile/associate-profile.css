@@ -1,7 +1,5 @@
-.info > h3, .info > p, .info > input{
-    display:inline;
-    border: none;
-    /* background-color: #f26925; */
+body{
+  height: 100vh;
 }
 .info{
     background-color: #f26925;
@@ -10,6 +8,10 @@
     border: 1px solid black;
     border-radius: .5em;
     margin-top: .5em;
+}
+.info > *{
+    display:inline;
+    border: none;
 }
 .row1{
     display:inline-block;
@@ -42,16 +44,13 @@ p{
     margin: .5em;
     text-align:left;
 }
-input, textarea{
-    font-family: "Futura Std, Medium", sans-serif;
-    font-size: 16px;
-}
-button, input, select{
+button, input, select, textarea{
     background-color: #f26925;
     height: 1.5em;
     border: 1px solid black;
     border-radius: .5em;
     font-family: "Futura Std, Medium", sans-serif;
+    font-size: 16px;
 }
 #favTechnologies > p{
     background-color: #f26925;
@@ -73,6 +72,8 @@ li.tech, ul > input{
     border: 1px solid black;
     border-radius: .5em;
     margin: .5em;
+    padding-left: .25em;
+    padding-top: .25em;
 }
 form{
     border: 1px solid black;
@@ -85,36 +86,8 @@ form{
     width: 50em;
     margin-top: .5em;
 }
-html{
-    background: linear-gradient(#fff, #f26925);
-    background-repeat: no-repeat;
-    height: 100%;
-}
 
-@font-face { /* thinnest */
-    font-family: "Futura Std, Book"; 
-    src: url("./revature-styles/Futura-Std-Book.otf") format("opentype");
-    font-style: normal;
-}
-
-@font-face { /* thinner */
-    font-family: "Futura Std, Medium"; 
-    src: url("./revature-styles/Futura-Std-Medium.otf") format("opentype");
-    font-style: normal;
-}
-
-@font-face { /* thicker */
-    font-family: "Futura Std, Heavy"; 
-    src: url("./revature-styles/Futura-Std-Heavy.otf") format("opentype");
-    font-style: normal;
-}
-
-@font-face { /* thickest */
-    font-family: "Futura Std, Bold"; 
-    src: url("./revature-styles/Futura-Std-Bold.otf") format("opentype");
-    font-style: normal;
-}
-
+/* header/nav bar styling */
 header {
     display: flex;
     justify-content: space-between;

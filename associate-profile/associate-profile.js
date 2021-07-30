@@ -36,15 +36,15 @@ cancelBio.onclick = resetBioForm
 editFavTechnologies.onclick = setupFavTechnologiesForm
 cancelFavTechnologies.onclick = resetFavTechnologiesForm
 
-// make session variable for user
+// mock session variable for user
 const currentUser = 1
 
 // get the info for the current user
 getAssociateInfo(currentUser)
 
-contactInfoForm.onsubmit = function (e) {
+contactInfoForm.onsubmit = function (form) {
     // stop the regular form submission
-    e.preventDefault()
+    form.preventDefault()
 
     let newInfo = {}
 
@@ -75,9 +75,9 @@ contactInfoForm.onsubmit = function (e) {
     }
 }
 
-bioForm.onsubmit = function (e) {
+bioForm.onsubmit = function (form) {
     // stop the regular form submission
-    e.preventDefault()
+    form.preventDefault()
 
     let newInfo = {}
 
@@ -108,9 +108,9 @@ bioForm.onsubmit = function (e) {
     }
 }
 
-favTechnologiesForm.onsubmit = function (e) {
+favTechnologiesForm.onsubmit = function (form) {
     // stop the regular form submission
-    e.preventDefault()
+    form.preventDefault()
 
     let newInfo = {}
 
