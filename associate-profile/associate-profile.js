@@ -37,10 +37,11 @@ editFavTechnologies.onclick = setupFavTechnologiesForm
 cancelFavTechnologies.onclick = resetFavTechnologiesForm
 
 // mock session variable for user
-const currentUser = 1
+const currentUser = "userID"
 
 // get the info for the current user
 getAssociateInfo(currentUser)
+setFormActions(currentUser)
 
 contactInfoForm.onsubmit = function (form) {
     // stop the regular form submission
@@ -143,7 +144,7 @@ favTechnologiesForm.onsubmit = function (form) {
 }
 
 async function getAssociateInfo(id) {
-    let url = "http://localhost:5000/associate"
+    let url = "http://localhost:5000/associate/" + id
     let response = await fetch(url)
     let associateInfo = await response.json()
     firstName.innerText = associateInfo["firstName"]
@@ -245,4 +246,10 @@ function resetFavTechnologiesForm() {
     newTech2.style.display = "none"
     newTech3.style.display = "none"
     newPreference.style.display = "none"
+}
+
+function setFormActions(id){
+    contactInfoForm.action = contactInfoForm.action + id
+    bioForm.action = bioForm.action + id
+    favTechnologiesForm.action = favTechnologiesForm.action + id
 }

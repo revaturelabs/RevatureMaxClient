@@ -5,42 +5,39 @@ const submitContactInfo = document.getElementById("submitContactInfo")
 const editBio = document.getElementById("editBio")
 const cancelBio = document.getElementById("cancelBio")
 const submitBio = document.getElementById("submitBio")
-const editFavTechnologies = document.getElementById("editFavTechnologies")
-const cancelFavTechnologies = document.getElementById("cancelFavTechnologies")
-const submitFavTechnologies = document.getElementById("submitFavTechnologies")
+const editTrainingInfo = document.getElementById("editTrainingInfo")
+const cancelTrainingInfo = document.getElementById("cancelTrainingInfo")
+const submitTrainingInfo = document.getElementById("submitTrainingInfo")
 const firstName = document.getElementById("userFirstName")
 const lastName = document.getElementById("userLastName")
 const email = document.getElementById("userEmail")
 const bio = document.getElementById("userBio")
-const tech1 = document.getElementById("tech1")
-const tech2 = document.getElementById("tech2")
-const tech3 = document.getElementById("tech3")
-const preference = document.getElementById("userPreference")
+const specialization = document.getElementById("userSpecialization")
+const userLocation = document.getElementById("userLocation")
 const contactInfoForm = document.getElementById("updateContactInfo")
 const bioForm = document.getElementById("updateBio")
-const favTechnologiesForm = document.getElementById("updateFavTechnologies")
+const trainingInfoForm = document.getElementById("updateTrainingInfo")
 const newFirstName = document.getElementById("editFirstName")
 const newLastName = document.getElementById("editLastName")
 const newEmail = document.getElementById("editEmail")
 const newBio = document.getElementById("newBio")
-const newTech1 = document.getElementById("editTech1")
-const newTech2 = document.getElementById("editTech2")
-const newTech3 = document.getElementById("editTech3")
-const newPreference = document.getElementById("editPreference")
+const newSpecialization = document.getElementById("editUserSpecialization")
+const newLocation = document.getElementById("editUserLocation")
 
 // setup event handlers for buttons
 editContactInfo.onclick = setupContactInfoForm
 cancelContactInfo.onclick = resetContactInfoForm
 editBio.onclick = setupBioForm
 cancelBio.onclick = resetBioForm
-editFavTechnologies.onclick = setupFavTechnologiesForm
-cancelFavTechnologies.onclick = resetFavTechnologiesForm
+editTrainingInfo.onclick = setupTrainingInfoForm
+cancelTrainingInfo.onclick = resetTrainingInfoForm
 
 // mock session variable for user
-const currentUser = 1
+const currentUser = "trainerID"
 
 // get the info for the current user
-getAssociateInfo(currentUser)
+getTrainerInfo(currentUser)
+setFormActions(currentUser)
 
 contactInfoForm.onsubmit = function (form) {
     // stop the regular form submission
@@ -55,8 +52,8 @@ contactInfoForm.onsubmit = function (form) {
 
     // get the rest of the info from the elements on the page
     newInfo["bio"] = bio.innerText
-    newInfo["favoriteTechnologies"] = [tech1.innerText, tech2.innerText, tech3.innerText]
-    newInfo["preference"] = preference.innerText
+    newInfo["specialization"] = specialization.innerText
+    newInfo["location"] = userLocation.innerText
 
     // construct an HTTP request
     let xhr = new XMLHttpRequest()
@@ -68,7 +65,7 @@ contactInfoForm.onsubmit = function (form) {
 
     xhr.onloadend = function () {
         // update the info on the page
-        getAssociateInfo(currentUser)
+        getTrainerInfo(currentUser)
 
         // reset the form elements
         resetContactInfoForm()
@@ -88,8 +85,8 @@ bioForm.onsubmit = function (form) {
     newInfo["firstName"] = firstName.innerText
     newInfo["lastName"] = lastName.innerText
     newInfo["emailAddress"] = email.innerText
-    newInfo["favoriteTechnologies"] = [tech1.innerText, tech2.innerText, tech3.innerText]
-    newInfo["preference"] = preference.innerText
+    newInfo["specialization"] = specialization.innerText
+    newInfo["location"] = userLocation.innerText
 
     // construct an HTTP request
     let xhr = new XMLHttpRequest()
@@ -101,22 +98,22 @@ bioForm.onsubmit = function (form) {
 
     xhr.onloadend = function () {
         // update the info on the page
-        getAssociateInfo(currentUser)
+        getTrainerInfo(currentUser)
 
         // reset the form elements
         resetBioForm()
     }
 }
 
-favTechnologiesForm.onsubmit = function (form) {
+trainingInfoForm.onsubmit = function (form) {
     // stop the regular form submission
     form.preventDefault()
 
     let newInfo = {}
 
     // get the info from the form that we submitted
-    newInfo["favoriteTechnologies"] = [this["tech1"].value, this["tech2"].value, this["tech3"].value]
-    newInfo["preference"] = this["preference"].value
+    newInfo["specialization"] = this["specialization"].value
+    newInfo["location"] = this["location"].value
 
     // get the rest of the info from the elements on the page
     newInfo["firstName"] = firstName.innerText
@@ -135,35 +132,30 @@ favTechnologiesForm.onsubmit = function (form) {
 
     xhr.onloadend = function () {
         // update the info on the page
-        getAssociateInfo(currentUser)
+        getTrainerInfo(currentUser)
 
         // reset the form elements
-        resetFavTechnologiesForm()
+        resetTrainingInfoForm()
     }
 }
 
-async function getAssociateInfo(id) {
-    let url = "http://localhost:5000/associate"
+async function getTrainerInfo(id) {
+    let url = "http://localhost:5000/trainer/" + id
     let response = await fetch(url)
-    let associateInfo = await response.json()
-    firstName.innerText = associateInfo["firstName"]
-    newFirstName.value = associateInfo["firstName"]
-    lastName.innerText = associateInfo["lastName"]
-    newLastName.value = associateInfo["lastName"]
-    email.innerText = associateInfo["emailAddress"]
-    newEmail.value = associateInfo["emailAddress"]
-    bio.innerText = associateInfo["bio"]
+    let trainerInfo = await response.json()
+    firstName.innerText = trainerInfo["firstName"]
+    newFirstName.value = trainerInfo["firstName"]
+    lastName.innerText = trainerInfo["lastName"]
+    newLastName.value = trainerInfo["lastName"]
+    email.innerText = trainerInfo["emailAddress"]
+    newEmail.value = trainerInfo["emailAddress"]
+    bio.innerText = trainerInfo["bio"]
     bio.style.height = "fit-content"
-    newBio.value = associateInfo["bio"]
-    let favTechs = associateInfo["favoriteTechnologies"]
-    tech1.innerText = favTechs[0]
-    newTech1.value = favTechs[0]
-    tech2.innerText = favTechs[1]
-    newTech2.value = favTechs[1]
-    tech3.innerText = favTechs[2]
-    newTech3.value = favTechs[2]
-    preference.innerText = associateInfo["preference"]
-    newPreference.value = associateInfo["preference"]
+    newBio.value = trainerInfo["bio"]
+    specialization.innerText = trainerInfo["specialization"]
+    newSpecialization.value = trainerInfo["specialization"]
+    userLocation.innerText = trainerInfo["location"]
+    newLocation.value = trainerInfo["location"]
 }
 
 function menuToggle() {
@@ -215,34 +207,30 @@ function resetBioForm() {
     newBio.style.display = "none"
 }
 
-function setupFavTechnologiesForm() {
-    editFavTechnologies.style.display = "none"
-    submitFavTechnologies.style.display = "inline"
-    cancelFavTechnologies.style.display = "inline"
-    tech1.style.display = "none"
-    tech2.style.display = "none"
-    tech3.style.display = "none"
-    preference.style.display = "none"
-    newTech1.style.display = "block"
-    newTech1.value = tech1.innerText
-    newTech2.style.display = "block"
-    newTech2.value = tech2.innerText
-    newTech3.style.display = "block"
-    newTech3.value = tech3.innerText
-    newPreference.style.display = "inline"
-    newPreference.value = preference.innerText
+function setupTrainingInfoForm() {
+    editTrainingInfo.style.display = "none"
+    submitTrainingInfo.style.display = "inline"
+    cancelTrainingInfo.style.display = "inline"
+    specialization.style.display = "none"
+    userLocation.style.display = "none"
+    newSpecialization.style.display = "inline"
+    newSpecialization.value = specialization.innerText
+    newLocation.style.display = "inline"
+    newLocation.value = userLocation.innerText
 }
 
-function resetFavTechnologiesForm() {
-    editFavTechnologies.style.display = "inline"
-    submitFavTechnologies.style.display = "none"
-    cancelFavTechnologies.style.display = "none"
-    tech1.style.display = "block"
-    tech2.style.display = "block"
-    tech3.style.display = "block"
-    preference.style.display = "inline"
-    newTech1.style.display = "none"
-    newTech2.style.display = "none"
-    newTech3.style.display = "none"
-    newPreference.style.display = "none"
+function resetTrainingInfoForm() {
+    editTrainingInfo.style.display = "inline"
+    submitTrainingInfo.style.display = "none"
+    cancelTrainingInfo.style.display = "none"
+    specialization.style.display = "inline"
+    userLocation.style.display = "inline"
+    newSpecialization.style.display = "none"
+    newLocation.style.display = "none"
+}
+
+function setFormActions(id){
+    contactInfoForm.action = contactInfoForm.action + id
+    bioForm.action = bioForm.action + id
+    trainingInfoForm.action = trainingInfoForm.action + id
 }
